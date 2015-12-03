@@ -1,0 +1,11 @@
+clone
+add
+commit
+push
+pull
+show
+checkout
+reset
+diff
+status
+log
