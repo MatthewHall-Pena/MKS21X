@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 clone
 add
 commit
@@ -9,3 +10,5 @@ reset
 diff
 status
 log
+=======
+>>>>>>> dc8bd4cbf7556c5c8abcbcd7d8b0fd1accbc67b8
