@@ -21,7 +21,7 @@ public BarCode(BarCode x){
 
 //post: computes and returns the check sum for _zip
 private int checkSum(){
-    int zip=_zip.parseInt();
+    int zip=Integer.parseInt(_zip);
     int sum=0;
     while(zip!=0){
 	sum+=zip%10;
@@ -35,22 +35,25 @@ private int checkSum(){
 public String toString(){
     String s="|";
     for(int x=1;x<7;x++){
-	s+=codes[_zip.substring(x-1,x).parseInt()];
+	s+=codes[Integer.parseInt(_zip.substring(x-1,x))];
     }
     return s+"|";
 }
 
 
 public boolean equals(Object other){
-    return this==other || ((other instanceof BarCode) && (((BarCode) other)._zip.equals(_zip));
+    return this==other || ((other instanceof BarCode) && (((BarCode) other)._zip.equals(_zip)));
 }
 // postcondition: false if the object is not a BarCode, 
 // false if it is a non-matching barcode
 // true when they match.
 
 
-public int compareTo(Comparable other){
-    
+public int compareTo(Object other){
+    if(this.equals(other)){
+	return 0;
+    }
+    return -1;
 }
 // postcondition: compares the zip + checkdigit 
 
