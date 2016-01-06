@@ -1,4 +1,4 @@
-package hwSorts;
+import java.util.*;
 
 public class Sorts {
 	public static void printArray(int[] data) {
@@ -13,34 +13,57 @@ public class Sorts {
 		System.out.println(s);
 	}
 
-	public static void insertionSort(int[] data) {
-		int[] ndata = new int[0];
-		for (int x = 0; x < data.length; x++) {
-			ndata = add(addIndex(data[x], ndata), data[x], ndata);
-		}
-		for (int x = 0; x < data.length; x++) {
-			data[x] = ndata[x];
-		}
-	}
-
 	public static void selectionSort(int[] data) {
-		int min;
-		int index;
+		int num;
 		for (int x = 0; x < data.length; x++) {
-			min = data[x];
-			index = x;
-			for (int y = x; y < data.length; y++) {
-				if (min > data[y]) {
-					min = data[y];
-					index = y;
+
+			for (int y = x; y > 0; y--) {
+				if (data[y] < data[y-1]) {
+					num = data[y];
+					data[y] = data[y-1];
+					data[y-1]=num;
 				}
 			}
-			data[index] = data[x];
-			data[x] = min;
+			
+		}
+	}
+
+	public static void insertionSort(int[] data) {
+		int num;
+		for (int y = 0; y < data.length-1; y++) {
+
+			while(data[y] > data[y+1]) {
+					num = data[y];
+					data[y] = data[y+1];
+					data[y+1]=num;
+		
+			}
+			
+		}
+		printArray(data);
+
+	}
+        public static void bubbleSort(int[] data) {
+	    int num;
+	    int  swap=0;
+		for (int x = 0; x < data.length; x++) {
+
+			for (int y = 0; y < data.length-x-1; y++) {
+				if (data[y] > data[y+1]) {
+					num = data[y];
+					data[y] = data[y+1];
+					data[y+1]=num;
+					swap+=1;
+				}
+			}
+			if (swap==0){
+			    x=data.length;
+			}
+			swap=0;
+			
 		}
 
 	}
-
 	private static int addIndex(int n, int[] data) {
 		int place0 = 0;
 		int place1 = data.length;
@@ -73,11 +96,17 @@ public class Sorts {
 		}
 		return ndata;
 	}
-
-	public static void main(String[] args) {
-		int[] ints = { 0, 5, 3, 4, 2 };
-		selectionSort(ints);
-		printArray(ints);
+    public static void fillRandom(int[] data){
+	Random r=new Random();
+	for(int x = 0; x < data.length; x++){
+	    data[x]=r.nextInt();
 	}
+    }
+    public static void swap(int[] data,int index,int nIndex){
+	int num = data[index];
+	data[index] = data[nIndex];
+	data[nIndex]=num;
+    }
+
 
 }
